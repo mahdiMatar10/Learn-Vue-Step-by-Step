@@ -6,43 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3"></script>
+
+    <style>
+        /* this is easy way in 2022 to center an element on the page */
+        html,body {
+            height: 100%;
+        }
+
+        body{
+            display: grid;
+            place-items: center;
+        }
+        /* NOW we want to apply these classes dynamically */
+        .text-red{
+            color: red;
+        }
+
+        .text-green{
+            color: green;
+        }
+    </style>
 </head>
 <body>
     <div class="" id="app">
-        <p>
-            <!-- the value of the input is equal to greeting  -->
-            <!-- also v-model handles listening for when that value is changed  -->
-            <input type=" " name="" id="" v-model="greeting">
-        </p>
-        <p>
+        <!-- use v-bind attribute called class to the resalt expression, shorthand ":"-->
+        <!-- the "buttonClasses" is the expression evaluates to text-green not the string CSS class -->
+        <!-- when you click to the button change the text from green to red  -->
 
-            {{ greeting }}
-            <!-- ex: number for chars -->
-            ({{ greeting.length }})
-        </p>
+        <button :class="buttonClasses" v-on:click="toggle">Click Me</button>
+
     </div>
 
     <script>
-        // view has access to this element in its children 
+
         Vue.createApp({
 
-            // add a method call data ()
             data(){
-                // and that will return an object
-                // mean the DOM itself was the source of truth 
                 return{
-                    greeting: 'whats up'
+                    buttonClasses: 'text-green'
                 }
             },
-
-            // add method 
-            mounted(){
-                setTimeout(() => {
-
-                    this.greeting = 'changed';
-                },3000)
+            // create a methods object, must your costom methods are nested within methods object 
+            methods:{
+                toggle(){
+                    this.buttonClasses = 'text-red'
+                }
             }
-
         }).mount('#app');
     </script>
 </body>
