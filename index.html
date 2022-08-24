@@ -13,22 +13,30 @@
   <body class="h-full grid place-items-center">
     <div class="" id="app">
       <section>
-        <h2 class="font-bold mb-2" >Assignments</h2>
+        <h2 class="font-bold mb-2">Assignments</h2>
 
         <ul>
-          <li>Finish Project <input type="checkbox"></li>
-          <li>Read Chapter 4 <input type="checkbox"></li>
-          <li>Turn on homework <input type="checkbox"></li>
+            <!-- next step the loop over these assignments -->
+            <li v-for="assignment in assignments"> {{ assignment.name }}</li>
+            <!-- NOW we are generating it Dynamically -->
         </ul>
       </section>
     </div>
 
     <script>
-        // Single Source of Truth
+      // Single Source of Truth
 
-        let app = {
-
-        }
+      let app = {
+        data() {
+          return {
+            assignments: [
+              { name: "Finish Project", complete: false },
+              { name: "Read Chapter", complete: false },
+              { name: "Turn on homework", complete: false },
+            ],
+          };
+        },
+      };
       Vue.createApp(app).mount("#app");
     </script>
   </body>
