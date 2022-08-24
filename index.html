@@ -12,7 +12,10 @@
   <!-- center the content in paga -->   
   <body class="h-full grid place-items-center">
     <div class="" id="app">
-        <app-button></app-button>
+
+        <app-button>Submit</app-button>
+        
+        <!-- the represent what we call a slot (slot tag) -->
     </div>
 
     <script>
@@ -24,10 +27,19 @@
                 // what the templet for app 
                 // first ways
                 template:`
-                   <button class="bg-gray-200 hover:bg-gray-400 border rounded px-5 py-2">Hi There</button>
+                   <button class="bg-gray-200 hover:bg-gray-400 border rounded px-5 py-2 disabled:cursor-not-allowed" :disabled="processing">
+
+                        <slot/>
+                    </button>
                 `,
+
+                data(){
+                    return{
+                        processing: true
+                    }
+                },
                 mounted(){
-                    alert('Hello'); 
+                    // alert('Hello'); 
                 }
             }
         }
