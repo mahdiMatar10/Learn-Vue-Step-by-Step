@@ -12,14 +12,14 @@
   <!-- center the content in paga -->
   <body class="h-full grid place-items-center">
     <div class="" id="app">
-      <section>
+      <section v-show="inProgressAssignments.length" >
         <h2 class="font-bold mb-2">In Proress</h2>
 
         <ul>
           <!-- next step the loop over these assignments -->
           <!-- whenever you're looping over something you need to get in the habit of applying a key (key Property) -->
           <!-- always add a key  -->
-          <li v-for="assignment in assignments.filter(a => ! a.complete)" :key="assignment.id">
+          <li  v-for="assignment in inProgressAssignments" :key="assignment.id">
             <label>
                 {{ assignment.name }}
                 <!-- as a general rule whenever you're working with form inputs, you will always want to bind them using the model -->
@@ -35,14 +35,13 @@
       <!-- Second Section -->
       <!-- only show this section if we have assignments that have been completed and that resulting array is more than zero -->
       <!--v-show == style display:none, v-if == view hasn't added it to the Dom-->
-
-      <section v-show="assignments.filter(a => a.complete).length" class="mt-8">
+      <section v-show="completedAssignments.length" class="mt-8">
         <h2 class="font-bold mb-2">Completed</h2>
 
         <ul>
           <!-- next step the loop over these assignments -->
           <!-- each of attribute On their own line -->
-          <li v-for="assignment in assignments.filter(a => a.complete)" 
+          <li v-for="assignment in completedAssignments" 
             
             :key="assignment.id">
             <label>
@@ -72,6 +71,17 @@
             ],
           };
         },
+
+        computed:{
+            inProgressAssignments(){
+
+                return this.assignments.filter(assignment =>  ! assignment.complete);
+            },
+            completedAssignments(){
+                // where filter down where each assignment is complete
+                return this.assignments.filter(assignment =>  assignment.complete);
+            }
+        }
       };
       Vue.createApp(app).mount("#app");
     </script>
