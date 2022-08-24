@@ -16,10 +16,22 @@
         <h2 class="font-bold mb-2">Assignments</h2>
 
         <ul>
-            <!-- next step the loop over these assignments -->
-            <li v-for="assignment in assignments"> {{ assignment.name }}</li>
-            <!-- NOW we are generating it Dynamically -->
+          <!-- next step the loop over these assignments -->
+          <li v-for="assignment in assignments">
+            <label>
+                {{ assignment.name }}
+                <!-- as a general rule whenever you're working with form inputs, you will always want to bind them using the model -->
+                <!-- loop over a basic array -->
+                <!-- NEXT step is to introduce computed properties -->
+                <input type="checkbox" v-model="assignment.complete">
+            </label>
+          </li>
+          <!-- NOW we are generating it Dynamically -->
         </ul>
+
+        <pre>
+            {{ assignments }}
+        </pre>
       </section>
     </div>
 
