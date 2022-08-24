@@ -32,8 +32,8 @@
         <!-- use v-bind attribute called class to the resalt expression, shorthand ":"-->
         <!-- the "buttonClasses" is the expression evaluates to text-green not the string CSS class -->
         <!-- when you click to the button change the text from green to red  -->
-
-        <button :class="buttonClasses" v-on:click="toggle">Click Me</button>
+        <!-- shorthand v-on is "@" -->
+        <button :class="active ? 'text-red' : 'text-green'" @click="toggle">Click Me</button>
 
     </div>
 
@@ -43,13 +43,13 @@
 
             data(){
                 return{
-                    buttonClasses: 'text-green'
+                    active: false
                 }
             },
             // create a methods object, must your costom methods are nested within methods object 
             methods:{
                 toggle(){
-                    this.buttonClasses = 'text-red'
+                   this.active = !this.active
                 }
             }
         }).mount('#app');
