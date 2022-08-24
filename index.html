@@ -33,7 +33,10 @@
 
       </section>
       <!-- Second Section -->
-      <section class="mt-8">
+      <!-- only show this section if we have assignments that have been completed and that resulting array is more than zero -->
+      <!--v-show == style display:none, v-if == view hasn't added it to the Dom-->
+
+      <section v-show="assignments.filter(a => a.complete).length" class="mt-8">
         <h2 class="font-bold mb-2">Completed</h2>
 
         <ul>
