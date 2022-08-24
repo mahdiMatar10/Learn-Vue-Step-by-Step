@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div class="" id="app">
+        <p>
+            <!-- the value of the input is equal to greeting  -->
+            <!-- also v-model handles listening for when that value is changed  -->
+            <input type=" " name="" id="" v-model="greeting">
+        </p>
+        <p>
+
+            {{ greeting }}
+            <!-- ex: number for chars -->
+            ({{ greeting.length }})
+        </p>
+    </div>
+
+    <script>
+        // view has access to this element in its children 
+        Vue.createApp({
+
+            // add a method call data ()
+            data(){
+                // and that will return an object
+                // mean the DOM itself was the source of truth 
+                return{
+                    greeting: 'whats up'
+                }
+            },
+
+            // add method 
+            mounted(){
+                setTimeout(() => {
+
+                    this.greeting = 'changed';
+                },3000)
+            }
+
+        }).mount('#app');
+    </script>
+</body>
+</html>
