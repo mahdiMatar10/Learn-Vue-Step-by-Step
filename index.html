@@ -17,31 +17,16 @@
         
         <!-- the represent what we call a slot (slot tag) -->
     </div>
-
-    <script>
+        <!-- should be treated as a module -->
+    <script type="module">
       // Single Source of Truth
-
+        import AppButton from "./js/components/AppButton.js";
+        // one component per file you import as needed
       let app = {
         components:{
-            'app-button':{
-                // what the templet for app 
-                // first ways
-                template:`
-                   <button class="bg-gray-200 hover:bg-gray-400 border rounded px-5 py-2 disabled:cursor-not-allowed" :disabled="processing">
+            'app-button': AppButton
 
-                        <slot/>
-                    </button>
-                `,
-
-                data(){
-                    return{
-                        processing: true
-                    }
-                },
-                mounted(){
-                    // alert('Hello'); 
-                }
-            }
+            
         }
       };
       Vue.createApp(app).mount("#app");
