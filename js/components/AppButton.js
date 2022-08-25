@@ -7,6 +7,16 @@ export default{
          <slot/>
      </button>
     `, 
+    // props object 
+    props:{
+        // prop type is strings (data type[object, array, boolean, string, ...])
+        // this is a name of the prop
+        type: {
+            // this is a type of the prop 
+            type: String,
+            default: 'primary'
+        } 
+    },
     
     data(){
      return{
