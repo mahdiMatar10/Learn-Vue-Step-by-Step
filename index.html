@@ -8,19 +8,47 @@
     <script src="https://unpkg.com/vue@3"></script>
     <!-- add tailwindcss CSS  -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @keyframes spinner {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .is-loading:before {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin-top: -10px;
+        margin-left: -10px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        border-top-color: #000;
+        animation: spinner 0.6s linear infinite;
+      }
+
+      .is-loading{
+        color: transparent;
+      }
+      
+    </style>
   </head>
-  <!-- center the content in paga -->   
+  <!-- center the content in paga -->
   <body class="h-full grid place-items-center">
     <div class="" id="app">
+      <!-- default value is primary  -->
+      <app-button :processing="true">Submit</app-button>
 
-         <!-- default value is primary  -->
-        <app-button >Submit</app-button>
-
-        <!-- add different style for buttons using Props Objects -->
+      <!-- add different style for buttons using Props Objects -->
     </div>
-        <!-- should be treated as a module -->
+    <!-- should be treated as a module -->
     <script type="module">
-      import App from "./js/components/App.js"
+      import App from "./js/components/App.js";
       Vue.createApp(App).mount("#app");
     </script>
   </body>
