@@ -19,17 +19,8 @@
     </div>
         <!-- should be treated as a module -->
     <script type="module">
-      // Single Source of Truth
-        import AppButton from "./js/components/AppButton.js";
-        // one component per file you import as needed
-      let app = {
-        components:{
-            'app-button': AppButton
-
-            
-        }
-      };
-      Vue.createApp(app).mount("#app");
+      import App from "./js/components/App.js"
+      Vue.createApp(App).mount("#app");
     </script>
   </body>
 </html>
