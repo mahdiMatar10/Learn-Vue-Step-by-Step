@@ -9,7 +9,7 @@ export default {
         
         <Assignment-list :assignments="filters.completed"  title="Completed"></Assignment-list>
 
-        <form>
+        <form @submit="add">
             <div class="text-black">
                 <input placeholder="New assignment.." class="p-2 "/>
                 <button type="submit" class="p-2 bg-white border-l">Add</button>
@@ -37,4 +37,12 @@ export default {
         }
     }
   },
+
+  methods:{
+    add(e){
+        // we want to prevent the default action
+        e.preventDefault();
+        alert('Hi')
+    }
+  }
 };
