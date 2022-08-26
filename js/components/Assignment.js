@@ -2,7 +2,7 @@ export default {
   template: `
          
        <li>
-    <label>
+    <label class="p-2">
         {{ assignment.name }}
 
           <input type="checkbox" v-model="assignment.complete">
