@@ -3,10 +3,12 @@ import AssignmentList from "./AssignmentList.js";
 export default {
     components:{AssignmentList},
   template: `
-
-    <Assignment-list :assignments="inProgressAssignments"  title="In Progress"></Assignment-list>
+    <section class="space-y-6">
     
-    <Assignment-list :assignments="completedAssignments"  title="Completed"></Assignment-list>
+        <Assignment-list :assignments="inProgressAssignments"  title="In Progress"></Assignment-list>
+        
+        <Assignment-list :assignments="completedAssignments"  title="Completed"></Assignment-list>
+    </section>
 
     `,
   data() {
