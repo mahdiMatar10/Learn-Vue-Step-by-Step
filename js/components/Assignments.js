@@ -8,6 +8,14 @@ export default {
         <Assignment-list :assignments="filters.inProgress"  title="In Progress"></Assignment-list>
         
         <Assignment-list :assignments="filters.completed"  title="Completed"></Assignment-list>
+
+        <form>
+            <div class="text-black">
+                <input placeholder="New assignment.." class="p-2 "/>
+                <button type="submit" class="p-2 bg-white border-l">Add</button>
+            </div>
+        </form>
+        
     </section>
 
     `,
