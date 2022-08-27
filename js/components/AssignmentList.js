@@ -9,11 +9,15 @@ export default {
      <span>({{assignments.length}})</span>
      </h2>
         <div class="flex gap-2">
-             <button v-for="tag in tags" class="border rounded px-1 py-px text-xs">{{ tag }}</button>
+             <button 
+             @click="currentTag = tag"
+             v-for="tag in tags" 
+             class="border rounded px-1 py-px text-xs">{{ tag }}</button>
         </div>
      <ul  class="border border-gray-600 divide-y divide-gray-600 mt-6">
+
             <assignment 
-            v-for="assignment in assignments" 
+            v-for="assignment in filteredAssignments" 
             :key="assignment.id"
             :assignment="assignment"
             ></assignment>
@@ -27,10 +31,18 @@ export default {
     assignments: Array,
     title: String,
   },
-
+  data(){
+    return{
+        currentTag:'math'
+    }
+  },
   computed:{
+    filteredAssignments(){
+        return this.assignments.filter(a => a.tag == this.currentTag);
+    },
     tags(){
-        return ['Science', 'Math', 'Reading'];   
+        // wrap it in a set an es6 set (set of items where each item must be unique )
+        return new Set (this.assignments.map(a => a.tag));
     }
   }
 };
