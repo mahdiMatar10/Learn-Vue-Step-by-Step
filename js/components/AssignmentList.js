@@ -12,7 +12,9 @@ export default {
              <button 
              @click="currentTag = tag"
              v-for="tag in tags" 
-             class="border rounded px-1 py-px text-xs">{{ tag }}</button>
+             class="border rounded px-1 py-px text-xs"
+             :class="{'border-blue-400 text-blue-400' : tag == currentTag}"
+             >{{ tag }}</button>
         </div>
      <ul  class="border border-gray-600 divide-y divide-gray-600 mt-6">
 
@@ -33,16 +35,21 @@ export default {
   },
   data(){
     return{
-        currentTag:'math'
+        currentTag:'all'
     }
   },
   computed:{
     filteredAssignments(){
+
+        if(this.currentTag == 'all'){
+            return this.assignments;
+        }
+
         return this.assignments.filter(a => a.tag == this.currentTag);
     },
     tags(){
         // wrap it in a set an es6 set (set of items where each item must be unique )
-        return new Set (this.assignments.map(a => a.tag));
+        return ['all', ...new Set (this.assignments.map(a => a.tag))];
     }
   }
 };
