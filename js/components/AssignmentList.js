@@ -1,7 +1,7 @@
 import Assignment from "./Assignment.js";
 import AssignmentTags from "./AssignmentTags.js";
 export default {
-    components:{Assignment, AssignmentTags},
+  components: { Assignment, AssignmentTags },
   template: `
      
      <section v-show="assignments.length">
@@ -10,7 +10,11 @@ export default {
      <span>({{assignments.length}})</span>
      </h2>
 
-     <assignment-tags :initial-tags="assignments.map(a => a.tag)"/>
+     <assignment-tags 
+     :initial-tags="assignments.map(a => a.tag)"
+     :current-tag ="currentTag"
+     @change="currentTag = $event"
+     />
      
      <ul  class="border border-gray-600 divide-y divide-gray-600 mt-6">
 
@@ -29,19 +33,18 @@ export default {
     assignments: Array,
     title: String,
   },
-  data(){
-    return{
-        currentTag:'all'
-    }
+  data() {
+    return {
+      currentTag: "all",
+    };
   },
-  computed:{
-    filteredAssignments(){
+  computed: {
+    filteredAssignments() {
+      if (this.currentTag == "all") {
+        return this.assignments;
+      }
 
-        if(this.currentTag == 'all'){
-            return this.assignments;
-        }
-
-        return this.assignments.filter(a => a.tag == this.currentTag);
-    }
-  }
+      return this.assignments.filter((a) => a.tag == this.currentTag);
+    },
+  },
 };
