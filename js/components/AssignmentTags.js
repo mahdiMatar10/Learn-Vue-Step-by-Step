@@ -2,7 +2,7 @@ export default {
   template: `
     <div class="flex gap-2">
         <button 
-        @click= "$emit('change', tag)"
+        @click= "$emit('update:currentTag', tag)"
         v-for="tag in tags" 
         class="border rounded px-1 py-px text-xs"
         :class="{'border-blue-400 text-blue-400' : tag == currentTag}"
@@ -19,7 +19,9 @@ export default {
 
   props: {
     initialTags: Array,
-    currentTag: String
+    // this is the defulalt prop name when using v-model custom components 
+    // modelValue should be equal to currentValue 
+    currentTag: String 
   },
   computed: {
     // taking the initial set and we are extending it
