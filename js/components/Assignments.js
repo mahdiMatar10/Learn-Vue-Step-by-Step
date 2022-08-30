@@ -6,13 +6,18 @@ import AssignmentCreate from "./AssignmentCreate.js";
 export default {
   components: { AssignmentList, AssignmentCreate },
   template: `
-    <section class="space-y-6">
+    <section class="flex gap-8">
     
-        <Assignment-list :assignments="filters.inProgress"  title="In Progress"></Assignment-list>
+        <Assignment-list :assignments="filters.inProgress"  title="In Progress">
+          
+        <assignment-create @add="add"></assignment-create> 
         
-        <Assignment-list :assignments="filters.completed"  title="Completed"></Assignment-list>
+        </Assignment-list>
         
-        <assignment-create @add="add"></assignment-create>
+        <Assignment-list :assignments="filters.completed"  title="Completed" can-toggle>
+        </Assignment-list>
+        
+        
     </section>
 
     `,
