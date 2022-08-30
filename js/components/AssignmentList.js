@@ -6,13 +6,13 @@ export default {
   components: { Assignment, AssignmentTags , AssignmentCreate},
   template: `
      
-     <section v-show="show && assignments.length" class="w-65">
+     <section v-show="assignments.length" class="w-65">
             <div class="flex justify-between items-start">
                 <h2 class="font-bold mb-2">{{ title }} 
 
                 <span>({{assignments.length}})</span>
                 </h2>
-                <button v-show="canToggle" @click="show = false">&times;</button>
+                <button v-show="canToggle" @click="$emit('toggle')">&times;</button>
             </div>
         <assignment-tags 
         v-model:currentTag="currentTag"
@@ -41,7 +41,6 @@ export default {
   data() {
     return {
       currentTag: "all",
-      show: true
     };
   },
   computed: {
