@@ -2,9 +2,9 @@ import AssignmentList from "./AssignmentList.js";
 
 import AssignmentCreate from "./AssignmentCreate.js";
 
-// we made assignmentList generic which means we can pass in data from the outside to configure it 
+// we made assignmentList generic which means we can pass in data from the outside to configure it
 export default {
-    components:{AssignmentList, AssignmentCreate },
+  components: { AssignmentList, AssignmentCreate },
   template: `
     <section class="space-y-6">
     
@@ -19,31 +19,36 @@ export default {
   data() {
     return {
       assignments: [
-        { name: "Finish Project", complete: false, id: 1 , tag: 'math'},
-        { name: "Read Chapter", complete: false, id: 2  , tag: 'science'},
-        { name: "Turn on homework", complete: false, id: 3 , tag: 'math'},
-      ]
-    }
 
-    ;
+      ],
+    };
   },
 
   computed: {
-    filters(){
-        return{
-            inProgress: this.assignments.filter((assignment) => !assignment.complete),
-            completed: this.assignments.filter((assignment) => assignment.complete)
-        }
-    }
+    filters() {
+      return {
+        inProgress: this.assignments.filter(
+          (assignment) => !assignment.complete
+        ),
+        completed: this.assignments.filter((assignment) => assignment.complete),
+      };
+    },
+  },
+  created() {
+    fetch("http://localhost:3001/assignments")
+      .then(response => response.json())
+      .then(assignments => {
+        this.assignments = assignments;
+      })
   },
 
-  methods:{
-    add(name){
-        this.assignments.push({
-            name: name,
-            complete: false,
-            id: this.assignments.length + 1 
-        })
-    }
-  }
+  methods: {
+    add(name) {
+      this.assignments.push({
+        name: name,
+        complete: false,
+        id: this.assignments.length + 1,
+      });
+    },
+  },
 };
