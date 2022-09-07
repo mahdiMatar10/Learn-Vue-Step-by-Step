@@ -1,12 +1,13 @@
 import Assignment from "./Assignment.js";
 import AssignmentTags from "./AssignmentTags.js";
 import AssignmentCreate from "./AssignmentCreate.js";
+import Panel from "./Panel.js";
 
 export default {
-  components: { Assignment, AssignmentTags , AssignmentCreate},
+  components: { Assignment, AssignmentTags , AssignmentCreate, Panel},
   template: `
      
-     <section v-show="assignments.length" class="w-65 bg-gray-700 border border-gray-600 p-4 rounded-lg">
+     <Panel v-show="assignments.length" class="w-65">
             <div class="flex justify-between items-start">
                 <h2 class="font-bold mb-2">{{ title }} 
 
@@ -30,7 +31,12 @@ export default {
  
             </ul>
             <slot></slot>
-   </section>
+
+            <template #footer>
+            
+              This is my footer
+            </template>
+   </Panel>
      `,
 
   props: {
